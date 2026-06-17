@@ -1,0 +1,32 @@
+{% extends 'authentication/base.html' %}
+
+{% block content %}
+    <h2 class="page-title">Додати нового автора</h2>
+
+    {% for error in form.non_field_errors %}
+        <p class="error-text">{{ error }}</p>
+    {% endfor %}
+
+    <div class="card form-wrapper">
+        <form action="{% url 'author_create' %}" method="POST">
+            {% csrf_token %}
+
+            <label>{{ form.name.label }}:</label>
+            {{ form.name }}
+            {% for error in form.name.errors %}<p class="error-text">{{ error }}</p>{% endfor %}
+
+            <label>{{ form.surname.label }}:</label>
+            {{ form.surname }}
+            {% for error in form.surname.errors %}<p class="error-text">{{ error }}</p>{% endfor %}
+
+            <label>{{ form.patronymic.label }}:</label>
+            {{ form.patronymic }}
+            {% for error in form.patronymic.errors %}<p class="error-text">{{ error }}</p>{% endfor %}
+
+            <div class="flex-start">
+                <button type="submit" class="btn btn-success">Зберегти автора</button>
+                <a href="{% url 'author_list' %}" class="btn btn-secondary">Скасувати</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}
