@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    "drf_spectacular",
     "authentication",
     "author",
     "book",
@@ -159,6 +160,16 @@ LOGGING = {
         },
     },
 }
+# Django REST framework / OpenAPI schema (drf-spectacular)
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Library API",
+    "VERSION": "v1",
+}
+
 try:
     from .local_settings import *
 except ImportError:
